@@ -23,9 +23,14 @@ ll cross(ii a, ii b) {
     return a.f * b.s - a.s * b.f; 
 }
 
-bool ccw(ii p, ii q, ii r) {
-    return cross(toVec(p, q), toVec(p, r)) >= 0;
+// bool ccw(ii p, ii q, ii r) {
+//     return cross(toVec(p, q), toVec(p, r)) >= 0;
+// }
+
+bool ccw(ii a, ii b, ii c) {
+    return (b.f - a.f) * (c.s - a.s) - (b.s - a.s) * (c.f - a.f) >= 0;
 }
+
 
 vector<ii> CH_Andrew(vector<ii> &v)
 {
