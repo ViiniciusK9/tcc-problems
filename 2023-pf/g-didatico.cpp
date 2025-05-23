@@ -46,32 +46,31 @@ int main(int argc, char const *argv[])
 
     int n;
     cin >> n;
-    vector<ii> v;
-    map<ii, int> m;
+    vector<ii> pontos;
+    map<ii, int> mapa_indices;
 
     for (int i = 0; i < n; i++)
     {
         int x, y;
         cin >> x >> y;
-        v.pb(ii(x, y));
-        m[ii(x, y)] = i + 1;
+        pontos.pb(ii(x, y));
+        mapa_indices[ii(x, y)] = i + 1;
     }
 
-    vector<ii> hull = CH_Andrew(v);
-    set<int> ans;
-    for (auto p : hull)
+    vector<ii> fecho_convexo = CH_Andrew(pontos);
+    set<int> resposta;
+    for (auto ponto : fecho_convexo)
     {
-        ans.insert(m[p]);
+        resposta.insert(mapa_indices[ponto]);
     }
+
     bool fir = true;
-    for (auto val : ans)
+    for (auto valor : resposta)
     {
-        cout << (fir == true ? "" : " ") << val;
+        cout << (fir == true ? "" : " ") << valor;
         fir = false;
     }
     cout << endl;
     
     return 0;
 }
-
-// g++ -O2 -Wall nome.cpp -o nome
